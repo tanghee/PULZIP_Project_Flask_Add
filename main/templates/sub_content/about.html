@@ -1,0 +1,30 @@
+{% extends "base2.html" %}
+
+{% block content %}
+    <div class="content">
+        <div class="content_title">
+            <img src="{{ url_for('static', filename='/img/menu01_1/text.png') }}">
+        </div>
+        <div class="content_content">
+            <div class="content_font">
+                풀짚공예의 특성상 구전 외에 특별한 전달 방식이 없음을 안타깝게 여기게 되어<br>
+                필요한 자료수집과 교육적 체계를 마련하게 되었고 2008년 봄 경기도 광주시에<br>
+                '풀짚공예박물관' 을 개관하였습니다. <br><br>
+                풀짚공예의 공예적 가치를 널리 알리기 위해서 전국에 기능을 갖고 있는 노인들<br>
+                의 기술방법과 유물 등을 수집하여 공예의 발달과정을 파악하고 재료의 특성과 <br>
+                지리적연관성을 확인하였기에 박물관 건립을 결심하게 된 것입니다.<br><br>
+                박물관과 연구실을 병행하면서 세계 민족의 풀짚 공예품과 우리 조상들의 민속 <br>
+                공예품도 비교되어 과거가 현재와 미래로 연결될 수 있는 교육이 되도록 노력하<br>
+                고 있습니다. '풀짚공예박물관' 을 통하여 자연소재의 풍부함과 기법의 무안함을<br>
+                응용할 수 있는 지혜가 미술 창작활동으로 이어질 수 있게 된다면 풀짚문화가 <br>
+                이상 잊혀진 예것이나 특정부류의 전유물이 아니고 우리 문화의 전승에 의미를<br>
+                갖게 될 것입니다.<br><br>
+                <img src="{{ url_for('static', filename='/img/menu01_1/sign.png') }}">
+            </div>
+            <div class="content_img">
+                <img src="{{ url_for('static', filename='/img/menu01_1/img01.png') }}">
+            </div>
+        </div>
+        <img src="{{ url_for('static', filename='/img/menu01_1/img02.png') }}" class="content_content2">
+    </div>
+{% endblock %}

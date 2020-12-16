@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>풀짚공예박물관 (Grasses &amp; straw craft : PULZIP.COM)</title>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <script>
+                    alert("{{ messages[-1] }}");
+                </script>
+            {% endif %}
+        {% endwith %}
+
+        <meta charset="UTF-8">
+        <meta name="keywords" content="풀짚, 집풀, 짚풀">
+        <meta name="description" content="아름다은 자연에서 나오는 소재를 가지고 재구성하여 예술로 승화시킨 풀짚">
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/reset.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style2.css') }}">
+    </head>
+    <body>
+        <!-- header -->
+        <div id="header">
+            <div class="container">
+                <div class="header">
+                    <div class="header_login">
+                        <ul>
+                            <li><a href="{{ url_for('main_page') }}" class="font font_12">HOME</a></li>
+
+                            {% if session.get("id") is not none %}
+                                <li><a href="" class="font font_12">{{ session["name"] }}님 안녕하세요^^</a></li>
+                                <li><a href="{{ url_for('member.member_logout') }}" class="font font_12">로그아웃</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('member.member_login') }}" class="font font_12">로그인</a></li>
+                                <li><a href="{{ url_for('member.member_join') }}" class="font font_12">회원가입</a></li>
+                            {% endif %}
+
+                            <li><a href="" class="font font_12">사이트맵</a></li>
+                        </ul>
+                    </div>
+                    <a href="{{ url_for('main_page') }}"><img src="{{ url_for('static', filename='/img/main_logo.png') }}" class="main_logo"></a>
+                    <div class="header_menu">
+                        <ul>
+                            {% for a in range(0, 5) %}
+                                {% for key, value in category[a].items() %}
+                                    <li class="font font_14"><strong>{{ key }}</strong></a>
+                                        <ul class="menu1">
+                                            {% for key2, value2 in value.items() %}
+                                                <li><a href="/sub/{{ value2 }}" class="font font_12">{{ key2 }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //header -->
+        <!-- sub_layout -->
+        <div class="sub_layout">
+            <!-- sub_menu -->
+            <div class="sub_menu">
+                <div class="menu_box">
+                        {% for value in big_tit.values() %}
+                            {% for key2, value2 in value.items() %}
+                                <a href="/sub/{{ value2 }}">
+                                    {% if value2 == request.path[5:] %}
+                                        <div class="real_box real_box_hover">{{ key2 }}</div>
+                                    {% else %}
+                                        <div class="real_box">{{ key2 }}</div>
+                                    {% endif %}
+                                </a>
+                            {% endfor %}
+                        {% endfor %}
+                </div>
+                <img src="{{ url_for('static', filename='/img/menu_location.png') }}">
+                <img src="{{ url_for('static', filename='/img/menu_info.png') }}">
+            </div>
+            <!-- //sub_menu -->
+            <!-- sub_content -->
+            <div class="sub_content">
+                <!-- banner -->
+                <div class="banner">
+                    <div class="banner_slide">
+                        <div class="first_slide fade"><img src="{{ url_for('static', filename='/img/sub_banner/img01.png') }}"></div>
+                        <div class="first_slide fade"><img src="{{ url_for('static', filename='/img/sub_banner/img02.png') }}"></div>
+                        <div class="first_slide fade"><img src="{{ url_for('static', filename='/img/sub_banner/img03.png') }}"></div>
+                    </div>
+                </div>
+                <div class="title">
+                    {% for a in range(0, 5) %}
+                        {% for key, value in category[a].items() %}
+                            {% for key2, value2 in value.items() %}
+                                {% if value2 == request.path[5:] %}
+                                    <div class="title_title">{{ key2 }}</div>
+                                    <div class="title_category">홈 > {{ key }} > <span>{{ key2 }}</span></div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                {% block content %}
+                {% endblock %}
+                <!-- //banner -->
+            </div>
+            <!-- //sub_content -->
+        </div>
+        <!-- //sub_layout -->
+        <!-- footer -->
+        <div id="footer">
+            <div class="container">
+                <div class="footer mb20">
+                    <img src="{{ url_for('static', filename='/img/footer_logo.png') }}">
+                    <div>
+                        TEL : 070-4655-4538 | FAX : 031-717-4539 | E-mail : <a href="mailto:pulzip@naver.com">pulzip@naver.com</a><br>
+                        COPYRIGHT 2020 PULZIP. ALL RIGHTS RESERVED. 경기도 광주시 오포읍 신현리 331-5 풀집공예박물관 <a href="">[약도보기]</a><br>
+                        331-5 Sinhyeonri Opoup GwangJu Gyeonggi, PULZIP <a href="">[Location Map]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //footer -->
+        <!-- javascript -->
+        <script src="{{ url_for('static', filename='/js/jquery.min_1.12.4.js') }}"></script>
+        <script src="{{ url_for('static', filename='/js/custom.js') }}"></script>
+    </body>
+</html>
